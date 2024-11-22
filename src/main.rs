@@ -1,3 +1,12 @@
+mod blank;
+mod cloning;
+use crate::blank::blank::Summary;
+mod inheritance;
+
+use crate::inheritance::traits::colorful::Colorful;
+use crate::inheritance::traits::shape::Shape;
+
+
 #[derive(Clone, Debug)]
 struct AppConfig {
     username: String,
@@ -43,4 +52,28 @@ fn main() {
     apply_config(default_config.clone());
 
     apply_config(module_config.clone());
+
+    // cloning
+
+    let int_container = cloning::cloning::Container::new(vec![1, 2, 3, 4, 5]);
+
+    println!("Original container:");
+    int_container.display();
+
+    let article = blank::blank::Article {
+        title: String::from("Rust Programming"),
+        body: String::from("Rust Programming"),
+    };
+
+    println!("{}", article.summarize());
+    // println!("{}", article.hi());
+    article.hi();
+
+    let circle = inheritance::heritance::Circle{
+        radius: 5.0,
+        color: String::from("Red")
+    };
+
+    println!("Area of the circle: {}", circle.area());
+    println!("Color of the circle: {}", circle.color());
 }
